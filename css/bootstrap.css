@@ -6913,3 +6913,24 @@ footer div{
 .dropdown-menu{
   background-color: #f2c647;
 }
+
+i{
+  padding: 2px;
+  font-size: 20px;
+}
+.play{
+  color: #f2c647;
+}
+.heart{
+  color: #d4434a;
+}
+.message{
+  color:#ba8a38;
+}
+
+.row button{
+  border: none;
+  font-size: 20px;
+  background: none;
+  outline: none;
+}
