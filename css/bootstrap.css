@@ -6934,3 +6934,9 @@ i{
   background: none;
   outline: none;
 }
+
+.dropdown button{
+  background: transparent;
+  border: none;
+  outline:none;
+}
