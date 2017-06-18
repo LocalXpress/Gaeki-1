@@ -9,7 +9,60 @@
     <title>| Gaeki |</title>
     <link href="css/bootstrap.css" rel="stylesheet">
 </head>
+<style>
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f2c647;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
 <body>
+  <div id="mySidenav" class="sidenav" style="margin-top:40px;">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+  </div>
   <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,6 +73,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
       <img src="img/logo-1.png" />
       <span>Gaeki</span>
     </div>
@@ -48,7 +102,7 @@
   </div>
   </nav>
   <nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid" style="background-color:#f2c647;">
+  <div class="container-fluid">
     <div class="navbar-header">
       <div class="dropup">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -247,6 +301,18 @@
   </section>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js" ></script>
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  }
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.body.style.backgroundColor = "white";
+  }
+</script>
 </body>
 
 </html>

@@ -6940,3 +6940,9 @@ i{
   border: none;
   outline:none;
 }
+
+.dropup button{
+  background: transparent;
+  border: none;
+  outline:none;
+}
