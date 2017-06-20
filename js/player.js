@@ -1,12 +1,12 @@
 var songs = ["First Song.mp3",
 			 "Second Song.mp3"];
 
-var songTitle = document.getElementById('songTitle');
-var songSlider = document.getElementById('songSlider');
-var currentTime = document.getElementById('currentTime');
-var duration = document.getElementById('duration');
-var volumeSlider = document.getElementById('volumeSlider');
-var nextSongTitle = document.getElementById('nextSongTitle');
+var songTitle 		= document.getElementById('songTitle');
+var songSlider 		= document.getElementById('songSlider');
+var currentTime 	= document.getElementById('currentTime');
+var duration 		= document.getElementById('duration');
+var volumeSlider 	= document.getElementById('volumeSlider');
+var nextSongTitle 	= document.getElementById('nextSongTitle');
 
 var song = new Audio();
 var currentSong = 0;
@@ -14,9 +14,9 @@ var currentSong = 0;
 window.onload = loadSong;
 
 function loadSong () {
-	song.src = "songs/" + songs[currentSong];
-	songTitle.textContent = (currentSong + 1) + ". " + songs[currentSong];
-	nextSongTitle.innerHTML = "<b>Next Song: </b>" + songs[(currentSong + 1)% songs.length];
+	song.src ="./songs/" + songs[currentSong];
+	songTitle.textContent 	= songs[currentSong];
+	nextSongTitle.innerHTML = songs[(currentSong + 1)% songs.length];
 	song.playbackRate = 1;
 	song.volume = volumeSlider.value;
 	song.play();
@@ -85,4 +85,14 @@ function increasePlaybackRate () {
 
 function decreasePlaybackRate () {
 	songs.playbackRate -= 0.5;
+}
+
+function showVolume()
+{
+	var x = document.getElementById('myDIV');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
 }
