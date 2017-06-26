@@ -1,5 +1,12 @@
-var songs = ["First Song.mp3",
-			 "Second Song.mp3"];
+var songs	= ["a","b","c","d","e","f",
+			   "g","h","i","j","k","l",
+			   "m","n","o","p","q","r"];
+var artist	=["Swarshsh","Swwhhwar","Swhwhwar","Swhhwwar","Swhwhwar","Swawwhr",
+			  "Swawhwwr","Swwhwhar","Swhwhwwar","Swwhwar","Swhwhwar","Swhhwar",
+			  "Swwhwahr","Swhhwwar","Swaahahr","wwhSwar","Swwhwhar","Sqlqlwar",];
+var pic		=["a","b","arjit","d","e","f",
+			  "g","h","i","j","k","l",
+			  "m","n","o","p","q","r"];	
 
 var songTitle 		= document.getElementById('songTitle');
 var songSlider 		= document.getElementById('songSlider');
@@ -9,21 +16,40 @@ var volumeSlider 	= document.getElementById('volumeSlider');
 var nextSongTitle 	= document.getElementById('nextSongTitle');
 
 var song = new Audio();
-var currentSong = 0;
+var currentSong=0;//it is the unique index for each of the song.
 
-window.onload = loadSong;
+
+window.onload =multiplyNode(document.querySelector('#MusicBlock'),songs.length, true);//whenever the window loads, the songs starts to play
+
+function multiplyNode(node, count, deep) {
+
+copy=node.cloneNode(deep);
+for (var i=0, copy; i <(count); i++) {
+	
+var str="loadSong("+i+")";//gives the index of the song
+var img_src="img/"+pic[i]+".jpg";//gives the picture of the song
+var song_name=songs[i];//name of the song
+var artist_name=artist[i];//name of the artist
+var btn_class="col-md-4 glyphicon glyphicon-play play";
+
+copy.innerHTML="<div class='col-md-2'><a href='#' class='thumbnail text-center'><img src='"+img_src+"'width='500px' height='500px'/><div class='row'><p>Artist: "+artist_name+"<br>Song: "+song_name+"</p><button class='"+btn_class+"' onclick='"+str+"'></button><button class='col-md-4 glyphicon glyphicon-heart heart'></button><button class='col-md-4 glyphicon glyphicon-comment message'></button></div></a>";	
+node.appendChild(copy.cloneNode(true));}
+}
+
 
 function loadSong () {
-	song.src ="./songs/" + songs[currentSong];
-	songTitle.textContent 	= songs[currentSong];
-	nextSongTitle.innerHTML = songs[(currentSong + 1)% songs.length];
+	currentSong=arguments[0];
+	song.src ="./songs/" + songs[currentSong]+ ".mp3";
+	songTitle.innerHTML	= "<b>Playing: </b>"+songs[currentSong];
+	nextSongTitle.innerHTML = "<b>Next: </b>"+songs[(currentSong + 1)% songs.length];
 	song.playbackRate = 1;
 	song.volume = volumeSlider.value;
 	song.play();
 	setTimeout(showDuration, 1000);
+	setInterval(updateSongSlider, 1000);
 }
 
-setInterval(updateSongSlider, 1000);
+
 
 function updateSongSlider () {
 	var c = Math.round(song.currentTime);
@@ -61,13 +87,13 @@ function playOrPauseSong (img) {
 
 function next(){
 	currentSong =((currentSong + 1)% songs.length);
-	loadSong();
+	loadSong(currentSong);
 }
 
 function previous () {
 	currentSong--;
 	currentSong = (currentSong < 0) ? songs.length - 1 : currentSong;
-	loadSong();
+	loadSong(currentSong);
 }
 
 function seekSong () {
@@ -75,17 +101,6 @@ function seekSong () {
 	currentTime.textContent = convertTime(song.currentTime);
 }
 
-function adjustVolume () {
-	song.volume = volumeSlider.value;
-}
-
-function increasePlaybackRate () {
-	songs.playbackRate += 0.5;
-}
-
-function decreasePlaybackRate () {
-	songs.playbackRate -= 0.5;
-}
 
 function showVolume()
 {
