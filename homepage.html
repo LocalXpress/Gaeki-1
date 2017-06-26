@@ -108,7 +108,6 @@ input[type="range"]::-webkit-slider-thumb
 .c2_1_2{width:70%;float:left;text-align:center;}
 .c2_1_3{width:10%;float:left;text-align:center;}
 .c2_1_4{width:10%;float:left;text-align:center;}
-#myDIV{width:10%;float:right;text-align:center;padding-right:10px;}
 .c1_1
 {
   width:20%;
@@ -197,7 +196,7 @@ input[type="range"]::-webkit-slider-thumb
 </script>
 </body>
 <!--player-->
-<div class="player">
+<div class="player" id="play">
 <div class="ele">
       <div class="c1">
       <div class="c1_1">
@@ -216,16 +215,15 @@ input[type="range"]::-webkit-slider-thumb
       <div class="slider"><input id="songSlider" type="range" min="0" step="1" onchange="seekSong()" /></div>
       </div>
       <div class="c2_1_3"><div id="duration"></div></div>
-      <div class="c2_1_4"><img src="images/volume-up.png" width="30px" onclick="showVolume();"/></div>
+      <div class="c2_1_4">
+      <!--Have to put some indicator that it is the sound button-->
+      <input id="volumeSlider" type="range" min="0" max="1" step="0.01" onchange="adjustVolume()" /></div>
       </div>
        
       <div class="c2_2">  
-      <img src="images/previous.png" width="30px" onclick="previous();" />
+      <img src="images/previous.png" width="30px" onclick="previous();"/>
       <img src="images/pause.png" width="40px" onclick="playOrPauseSong(this);" />
       <img src="images/next.png" width="30px" onclick="next();" />
-      </div>
-      
-<div id="myDIV"><input id="volumeSlider" type="range" min="0" max="1" step="0.01" onchange="adjustVolume()" />
       </div>
       
       </div>

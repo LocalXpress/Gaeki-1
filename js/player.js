@@ -25,19 +25,26 @@ function multiplyNode(node, count, deep) {
 
 copy=node.cloneNode(deep);
 for (var i=0, copy; i <(count); i++) {
-	
+
+var x = document.getElementById('play');
+x.style.display='none';
+
 var str="loadSong("+i+")";//gives the index of the song
 var img_src="img/"+pic[i]+".jpg";//gives the picture of the song
 var song_name=songs[i];//name of the song
 var artist_name=artist[i];//name of the artist
-var btn_class="col-md-4 glyphicon glyphicon-play play";
-
-copy.innerHTML="<div class='col-md-2'><a href='#' class='thumbnail text-center'><img src='"+img_src+"'width='500px' height='500px'/><div class='row'><p>Artist: "+artist_name+"<br>Song: "+song_name+"</p><button class='"+btn_class+"' onclick='"+str+"'></button><button class='col-md-4 glyphicon glyphicon-heart heart'></button><button class='col-md-4 glyphicon glyphicon-comment message'></button></div></a>";	
+var btn_class="col-md-4 glyphicon glyphicon-play play";//play class button
+//tatti code I want to remove this somehow. This is pure tatti
+copy.innerHTML="<div class='col-md-2'><a href='#' class='thumbnail text-center'><img src='"+img_src+"'/><div class='row'><p>Artist: "+artist_name+"<br>Song: "+song_name+"</p><button class='"+btn_class+"' onclick='"+str+"'></button><button class='col-md-4 glyphicon glyphicon-heart heart'></button><button class='col-md-4 glyphicon glyphicon-comment message'></button></div></a>";	
 node.appendChild(copy.cloneNode(true));}
 }
 
 
 function loadSong () {
+	//shows the player in the below when a song is played
+	var x = document.getElementById('play');
+       	x.style.display = 'block';
+  	//load the information about the song
 	currentSong=arguments[0];
 	song.src ="./songs/" + songs[currentSong]+ ".mp3";
 	songTitle.innerHTML	= "<b>Playing: </b>"+songs[currentSong];
@@ -45,6 +52,7 @@ function loadSong () {
 	song.playbackRate = 1;
 	song.volume = volumeSlider.value;
 	song.play();
+	//updating the slider of the song
 	setTimeout(showDuration, 1000);
 	setInterval(updateSongSlider, 1000);
 }
